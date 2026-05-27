@@ -2,104 +2,121 @@
 const year = new Date().getFullYear()
 import Rss from './Icons/Rss.astro'
 import Xitter from './Icons/Xitter.astro'
-import Twitch from './Icons/Twitch.astro'
 import Github from './Icons/Github.astro'
-import Youtube from './Icons/Youtube.astro'
-import Instagram from './Icons/Instagram.astro'
-import Tiktok from './Icons/Tiktok.astro'
+import Reddit from './Icons/Reddit.astro'
 ---
 
 <footer>
-  <span class="bri"
-    ><a href="https://astro.build" target="_blank" rel="noreferrer noopener"
-      >🚀 Built with Astro</a
-    ><span class="copy"> | © {year} hamza-mohd</span></span
-  >
-  <div class="socials">
-    <a href="/rss.xml">
-      <Rss />
-    </a>
-    <a
-      class="xIcon"
-      href="https://x.com/"
-      target="_blank"
-      rel="noreferrer noopener"
+  <div class="meta">
+    <span class="copy">© {year} Hamza Mohd</span>
+    <span class="dot" aria-hidden="true">·</span>
+    <a href="https://astro.build" target="_blank" rel="noreferrer noopener"
+      >Built with Astro</a
     >
-      <Xitter />
-    </a>
-
+  </div>
+  <div class="socials" aria-label="Social links">
     <a
+      class="iconLink"
       href="https://github.com/hamza-mohd"
       target="_blank"
       rel="noreferrer noopener"
+      aria-label="GitHub"
+      title="GitHub"
     >
       <Github />
     </a>
+    <a
+      class="iconLink"
+      href="https://x.com/MohdHamza190070"
+      target="_blank"
+      rel="noreferrer noopener"
+      aria-label="X (Twitter)"
+      title="X (Twitter)"
+    >
+      <Xitter />
+    </a>
+    <a
+      class="iconLink"
+      href="https://www.reddit.com/user/ClassicOld2202/"
+      target="_blank"
+      rel="noreferrer noopener"
+      aria-label="Reddit"
+      title="Reddit"
+    >
+      <Reddit />
+    </a>
+    <a class="iconLink" href="/rss.xml" aria-label="RSS feed" title="RSS feed">
+      <Rss />
+    </a>
+  </div>
 </footer>
 
 <style>
   footer {
     align-items: center;
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    padding: 4rem 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding: 3rem 0 1rem;
+    margin-top: 4rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--fg-subtle);
+  }
+
+  .meta .dot {
+    color: var(--fg-subtle);
+    opacity: 0.6;
+  }
+
+  .meta a {
+    color: var(--fg-muted);
+    font-weight: 500;
+  }
+
+  .meta a:hover {
+    color: var(--accent);
   }
 
   .socials {
-    display: flex; /* Change display to flex */
-    flex-wrap: wrap; /* Allow items to wrap to the next row */
-    justify-content: center; /* Center items horizontally */
-    gap: 2rem; /* Add gap between items */
-  }
-  a,
-  a {
-    color: black;
-    font-weight: unset;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
   }
 
-  .bri,
-  .copy,
-  a.dg {
-    font-size: 14px;
+  .iconLink {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-md);
+    color: var(--fg-muted);
+    transition: background-color 0.15s ease, transform 0.15s ease;
   }
 
-  ::global(.dark) .bri a,
-  ::global(.dark) .copy,
-  ::global(.dark) a.dg {
-    color: rgb(255 255 255 / 0.75);
+  .iconLink:hover {
+    background: var(--accent-soft);
+    transform: translateY(-2px);
   }
 
-  @media (max-width: 768px) {
+  .iconLink :global(svg) {
+    width: 20px;
+    height: 20px;
+  }
+
+  @media (max-width: 480px) {
     footer {
-      gap: 2rem;
-    }
-
-    footer span.bri {
-      grid-column-start: 1;
-      grid-column-end: -2;
-    }
-    .socials {
-      display: flex; /* Change display to flex */
-      flex-wrap: wrap; /* Allow items to wrap to the next row */
-      justify-content: center; /* Center items horizontally */
-      order: -1;
-      grid-column: 1 / -1;
-      gap: 2rem; /* Add gap between items */
-    }
-    footer .dg {
-      grid-column: -2 / -1;
-    }
-  }
-  @media (max-width: 350px) {
-    footer {
-      justify-items: center;
-      grid-template-columns: 1fr;
-    }
-
-    .bri,
-    .copy,
-    .dg {
-      font-size: 12px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.25rem;
     }
   }
 </style>

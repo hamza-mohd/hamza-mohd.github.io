@@ -2,45 +2,38 @@
 const currentPath = Astro.url.pathname
 import Logo from './Icons/Logo.astro'
 import ThemeToggle from './Icons/ThemeToggle.astro'
+
+const isActive = (path: string) =>
+  currentPath === path || currentPath.startsWith(path + '/')
 ---
 
 <header class="mainNav">
-  <a href="/">
+  <a href="/" class="logoLink" aria-label="Home">
     <div class="logo">
       <Logo name="Logo" />
     </div>
   </a>
-  <button aria-controls="menu" aria-expanded="false"></button>
+  <button aria-controls="menu" aria-expanded="false" aria-label="Toggle menu"
+  ></button>
   <nav>
     <ul>
       <li>
-        <a class={currentPath === '/blog/' ? 'active' : ''} href="/blog/"
-          >Blog</a
+        <a class={isActive('/blog') ? 'active' : ''} href="/blog/">Blog</a>
+      </li>
+      <li>
+        <a class={isActive('/projects') ? 'active' : ''} href="/projects/"
+          >Projects</a
         >
       </li>
-
+      <li>
+        <a class={isActive('/about') ? 'active' : ''} href="/about/">About</a>
+      </li>
+      <li>
+        <a class={isActive('/uses') ? 'active' : ''} href="/uses/">Uses</a>
+      </li>
       <li>
         <a
-          class={currentPath === '/projects/' ? 'active' : ''}
-          href="/projects/">Projects</a
-        >
-      </li>
-
-      <li>
-        <a class={currentPath === '/about/' ? 'active' : ''} href="/about/"
-          >About</a
-        >
-      </li>
-
-      <li>
-        <a class={currentPath === '/uses/' ? 'active' : ''} href="/uses/"
-          >Uses</a
-        >
-      </li>
-
-      <li>
-        <a
-          class={currentPath === '/stream-tools/' ? 'active' : ''}
+          class={isActive('/stream-tools') ? 'active' : ''}
           href="/stream-tools/">Stream tools</a
         >
       </li>
@@ -50,26 +43,40 @@ import ThemeToggle from './Icons/ThemeToggle.astro'
 </header>
 
 <style>
-  .shrink {
-    padding: 1rem 1rem 1rem 1rem;
-  }
   header {
-    background-color: rgb(255 255 255 / 0.5);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background-color: color-mix(in srgb, var(--bg) 70%, transparent);
+    backdrop-filter: saturate(180%) blur(14px);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    border-bottom: 1px solid transparent;
     display: grid;
-    gap: 1rem;
-    grid-template-columns: 48px 1fr auto;
+    gap: 1.5rem;
+    grid-template-columns: 40px 1fr auto;
     align-items: center;
-    padding: 4rem 1rem 1rem 1rem;
+    padding: 1rem 1.5rem;
     position: sticky;
-    max-width: 960px;
-    margin: auto;
+    max-width: var(--wide-width);
+    margin: 0 auto;
     top: 0;
-    transition: padding 0.5s ease;
+    z-index: 50;
+    transition: padding 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
   }
-  ::global(.dark) header {
-    background-color: rgb(22 22 37 / 50%);
+
+  header.shrink {
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1.5rem;
+  }
+
+  .logoLink {
+    display: inline-flex;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    border-radius: var(--radius-md);
+    transition: transform 0.2s ease;
+  }
+
+  .logoLink:hover {
+    transform: scale(1.05);
   }
 
   button[aria-expanded] {
@@ -80,184 +87,119 @@ import ThemeToggle from './Icons/ThemeToggle.astro'
     display: flex;
     list-style: none;
     justify-content: end;
+    align-items: center;
     padding: 0;
+    margin: 0;
+    gap: 0.25rem;
+  }
+
+  nav li {
+    margin: 0;
   }
 
   nav li a,
   nav li a:visited {
     display: inline-block;
-    color: rgb(0 0 255 / 50%);
-    font-weight: 600;
-    margin-left: 1rem;
+    color: var(--fg-muted);
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.5rem 0.875rem;
+    border-radius: var(--radius-md);
     text-decoration: none;
-  }
-
-  :global(.dark) nav li a,
-  :global(.dark) nav li a:visited {
-    color: rgb(255 255 255 / 0.5);
+    transition: color 0.15s ease, background-color 0.15s ease;
   }
 
   nav li a:hover,
-  nav li a:focus,
-  nav li a.active {
-    color: rgb(0 0 255 / 1);
-    text-decoration: underline;
+  nav li a:focus {
+    color: var(--fg);
+    background: var(--accent-soft);
+    text-decoration: none;
   }
 
-  :global(.dark) nav li a:hover,
-  :global(.dark) nav li a.active {
-    color: rgb(255 255 255 / 0.75);
+  nav li a.active {
+    color: var(--accent);
+    background: var(--accent-soft);
   }
 
   @media (max-width: 565px) {
     header {
       grid-template-columns: 36px 1fr auto;
-      padding: 1rem 1rem 0 1rem;
-      box-shadow: 0 0.5rem 6rem 0 rgb(0 0 0 / 24%);
+      gap: 0.75rem;
+      padding: 0.75rem 1.25rem;
     }
 
-    ::global(.dark) header {
-      box-shadow: 0 0.5rem 6rem 0 rgb(0 0 255 / 50%);
-    }
     button[aria-expanded] {
       background: none;
       border: none;
       cursor: pointer;
       display: inline-block;
-      height: 24px;
+      height: 28px;
       margin-left: auto;
       outline: none;
       padding: 0;
       position: relative;
-      width: 24px;
+      width: 28px;
+      order: 3;
     }
 
-    button[aria-expanded='false']:before,
-    button[aria-expanded='false']:after,
-    button[aria-expanded='true']:before,
-    button[aria-expanded='true']:after {
-      background: #333;
-      bottom: 0;
+    button[aria-expanded]:before,
+    button[aria-expanded]:after {
+      background: var(--fg);
       content: '';
       height: 2px;
-      left: 0;
-      margin: auto;
+      left: 4px;
+      right: 4px;
       position: absolute;
-      right: 0;
-      top: 0;
-      transition: transform 0.25s cubic-bezier(0, 0, 0, 1);
-      width: 100%;
-    }
-
-    ::global(.dark) button[aria-expanded='false']:before,
-    ::global(.dark) button[aria-expanded='false']:after,
-    ::global(.dark) button[aria-expanded='true']:before,
-    ::global(.dark) button[aria-expanded='true']:after {
-      background: rgb(255 255 255 / 0.5);
+      transition: transform 0.25s ease, top 0.25s ease, bottom 0.25s ease;
+      border-radius: 2px;
     }
 
     button[aria-expanded='false']:before {
-      transform: translateY(-5px) rotate3d(0, 0, 0, 45deg);
+      top: 9px;
     }
 
     button[aria-expanded='false']:after {
-      transform: translateY(5px) rotate3d(0, 0, 0, -45deg);
+      bottom: 9px;
     }
 
     button[aria-expanded='true']:before {
-      transform: translateY(0px) rotate3d(0, 0, 1, 45deg);
+      top: 13px;
+      transform: rotate(45deg);
     }
 
     button[aria-expanded='true']:after {
-      transform: translateY(0px) rotate3d(0, 0, 1, -45deg);
-    }
-
-    button[aria-expanded='false']:before {
-      transform: translateY(-5px) rotate3d(0, 0, 0, 45deg);
-    }
-
-    button[aria-expanded='false']:after {
-      transform: translateY(5px) rotate3d(0, 0, 0, -45deg);
-    }
-
-    button[aria-expanded='true']:before {
-      transform: translateY(0px) rotate3d(0, 0, 1, 45deg);
-    }
-
-    button[aria-expanded='true']:after {
-      transform: translateY(0px) rotate3d(0, 0, 1, -45deg);
+      bottom: 13px;
+      transform: rotate(-45deg);
     }
 
     nav {
       order: 4;
       grid-column: 1 / -1;
-      align-items: center;
       display: grid;
-      grid-template-columns: 1fr;
-      max-height: 0px;
+      max-height: 0;
       overflow: hidden;
-      transition: max-height 0.5s ease-in-out;
+      transition: max-height 0.35s ease;
     }
 
     nav ul {
       display: grid;
-      grid-gap: 20px;
-      justify-content: center;
+      gap: 0.25rem;
+      justify-content: stretch;
       margin: 0;
-      padding: 0 0 3rem 0;
+      padding: 1rem 0 0.5rem;
       width: 100%;
-    }
-
-    ul li {
-      text-align: center;
     }
 
     nav ul li a,
     nav ul li a:visited {
-      margin-left: 0;
-    }
-
-    ul li:nth-child(1) {
-      opacity: 0;
-      transition: opacity 0.2s 0.1s ease-in;
-    }
-
-    ul li:nth-child(2) {
-      opacity: 0;
-      transition: opacity 0.2s 0.2s ease-in;
-    }
-
-    ul li:nth-child(3) {
-      opacity: 0;
-      transition: opacity 0.2s 0.3s ease-in;
-    }
-
-    li:nth-child(4) {
-      opacity: 0;
-      transition: opacity 0.2s 0.4s ease-in;
-    }
-
-    ul li:nth-child(5) {
-      opacity: 0;
-      transition: opacity 0.2s 0.5s ease-in;
+      display: block;
+      text-align: center;
+      padding: 0.75rem;
     }
 
     [aria-expanded='true'] ~ nav {
-      max-height: 300px;
-    }
-
-    [aria-expanded='true'] ~ nav ul li {
-      opacity: 1;
-      padding: 0;
-    }
-
-    [aria-expanded='false'] ~ nav {
-      max-height: 0px;
-    }
-
-    [aria-expanded='false'] ~ nav ul li {
-      opacity: 0;
-      padding: 0;
+      max-height: 320px;
     }
   }
 </style>
@@ -267,38 +209,21 @@ import ThemeToggle from './Icons/ThemeToggle.astro'
     const navButtons = [...document.querySelectorAll('button[aria-expanded]')]
     const header: Element | null = document.querySelector('.mainNav')
 
-    function toggleNav() {
-      const expanded = this.getAttribute('aria-expanded') === 'true' || false
-      this.setAttribute('aria-expanded', !expanded)
+    function toggleNav(this: HTMLElement) {
+      const expanded = this.getAttribute('aria-expanded') === 'true'
+      this.setAttribute('aria-expanded', String(!expanded))
     }
 
     navButtons.forEach((button) => {
       button.addEventListener('click', toggleNav)
     })
 
-    function handleResize(entries) {
-      const { contentRect } = entries[0]
-      const isHeaderShrinkable = contentRect.width > 534
-
-      if (isHeaderShrinkable) {
-        const shouldShrink = window.scrollY > 50
-        header?.classList.toggle('shrink', shouldShrink)
-        window.addEventListener('scroll', handleScroll)
-      } else {
-        header?.classList.remove('shrink')
-        window.removeEventListener('scroll', handleScroll)
-      }
-    }
-
     function handleScroll() {
-      const shouldShrink = window.scrollY > 50
+      const shouldShrink = window.scrollY > 8
       header?.classList.toggle('shrink', shouldShrink)
     }
 
-    const resizeObserver = new ResizeObserver(handleResize)
-    resizeObserver.observe(header)
-
-    // Call handleResize immediately to set initial state
-    handleResize([{ contentRect: header.getBoundingClientRect() }])
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
   })
 </script>

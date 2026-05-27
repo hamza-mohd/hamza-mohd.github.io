@@ -2,32 +2,69 @@
 const { page } = Astro.props
 ---
 
-<div class="pagination">
+<nav class="pagination" aria-label="Pagination">
   {
-    page.url.prev && (
-      <a href={page.url.prev} title="Go to Previous">
-        &larr; Prev
+    page.url.prev ? (
+      <a class="pageBtn" href={page.url.prev} rel="prev">
+        &larr; Newer
       </a>
+    ) : (
+      <span />
     )
   }
+  <span class="pageInfo">
+    Page {page.currentPage} of {page.lastPage}
+  </span>
   {
-    page.url.next && (
-      <a href={page.url.next} title="Go to Next">
-        Next &rarr;
+    page.url.next ? (
+      <a class="pageBtn" href={page.url.next} rel="next">
+        Older &rarr;
       </a>
+    ) : (
+      <span />
     )
   }
-</div>
+</nav>
 
 <style>
-  .pagination a {
-    display: inline-block;
-    padding: 1rem 1rem 1rem 0;
-    color: #000;
-    font-weight: 600;
+  .pagination {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 1rem;
+    margin: 2.5rem 0 1rem;
   }
 
-  ::global(.dark) .pagination a {
-    color: rgb(255 255 255 / 0.75);
+  .pageBtn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.55rem 1rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-strong);
+    color: var(--fg);
+    background: var(--bg-elevated);
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .pageBtn:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    text-decoration: none;
+  }
+
+  .pagination a[rel='next'] {
+    justify-self: end;
+  }
+
+  .pageInfo {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    color: var(--fg-subtle);
+    text-align: center;
   }
 </style>

@@ -5,9 +5,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro'
 import Paginator from '../../components/Paginator.astro'
 
 export async function getStaticPaths({ paginate, rss }) {
-  // const oldPosts = await Astro.glob('../old-posts/*.md');
   const allPosts = await Astro.glob('./**/*.md')
-  // const allPosts = oldPosts.concat(newPosts);
   const sortedPosts = allPosts.sort(
     (a, b) =>
       new Date(b.frontmatter.publishDate).valueOf() -
@@ -17,14 +15,32 @@ export async function getStaticPaths({ paginate, rss }) {
 }
 
 const { page } = Astro.props
+
+function formatDate(input: string) {
+  const d = new Date(input)
+  if (isNaN(d.valueOf())) return input
+  return d.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  })
+}
 ---
 
 <BaseLayout
-  title="Blog Posts"
-  description="Recently written posts on various topics and interests."
-  keywords="clarkio, blog posts, post, posts, blog, writings, articles"
+  title="Blog"
+  description="Notes on backend engineering, platforms, databases, observability, and the small operational decisions that compound."
+  keywords="blog, software engineering, backend, platforms, databases, observability"
 >
-  <h1>Blog Posts</h1>
+  <header class="pageHead">
+    <span class="kicker">Writing</span>
+    <h1>Blog</h1>
+    <p class="sub">
+      Mostly on backend systems, platforms, and the parts of distributed
+      systems that decide whether anything else works.
+    </p>
+  </header>
+
   <div class="articles">
     {
       page.data.map(
@@ -42,20 +58,18 @@ const { page } = Astro.props
             url = `/${year}/${month}/${day}/${name}`
           }
           return (
-            <article>
-              <header>
-                <h2>
-                  <a href={url}>{title}</a>
-                </h2>
-              </header>
-              <div class="description">
-                <p>{description}</p>
-              </div>
-              <div class="details">
-                <p class="date">{publishDate}</p>
-                <p class="reading-time">{readingTime(rawContent()).text}</p>
-              </div>
-            </article>
+            <a href={url} class="articleLink">
+              <article>
+                <div class="meta">
+                  <time>{formatDate(publishDate)}</time>
+                  <span class="dot">·</span>
+                  <span class="rt">{readingTime(rawContent()).text}</span>
+                </div>
+                <h2>{title}</h2>
+                <p class="description">{description}</p>
+                <span class="readMore">Read post &rarr;</span>
+              </article>
+            </a>
           )
         }
       )
@@ -65,77 +79,114 @@ const { page } = Astro.props
 </BaseLayout>
 
 <style>
+  .pageHead {
+    margin: 1.5rem 0 2.5rem;
+  }
+
+  .kicker {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    margin-bottom: 0.75rem;
+  }
+
+  .pageHead h1 {
+    margin: 0;
+  }
+
+  .pageHead .sub {
+    color: var(--fg-muted);
+    max-width: 60ch;
+    margin: 0.75rem 0 0;
+    font-size: 1.05rem;
+  }
+
   .articles {
     display: grid;
-    gap: 30px;
-    grid-template-columns: 1fr;
-    list-style: none;
+    gap: 1.25rem;
   }
+
+  .articleLink {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .articleLink:hover {
+    text-decoration: none;
+  }
+
   article {
-    background: rgba(0, 0, 255, 0.02);
-    border-radius: 4px;
-    display: grid;
-    gap: 0;
-    grid-template-rows: subgrid;
-    grid-row: span 3;
-  }
-  article:hover {
-    background: rgba(0, 0, 255, 0.15);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem 1.75rem;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
   }
 
-  ::global(.dark) article:hover {
-    background: rgba(255, 255, 255, 0.1);
+  .articleLink:hover article {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+    box-shadow: var(--shadow-md);
   }
 
-  header,
-  .details,
-  .description {
-    padding: 0 1rem;
+  article .meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    color: var(--fg-subtle);
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: 0.02em;
   }
 
-  article,
-  .description {
-    border: 1px dotted rgba(0, 0, 255, 0.2);
+  article .meta .dot {
+    opacity: 0.5;
   }
 
-  ::global(.dark) article h2 a {
-    color: rgba(255, 255, 255, 0.75);
+  article h2 {
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    line-height: 1.25;
+    color: var(--fg);
+    margin: 0.5rem 0 0.5rem;
+    letter-spacing: -0.02em;
   }
 
-  ::global(.dark) article,
-  ::global(.dark) .description {
-    border: 1px dotted rgba(255, 255, 255, 0.2);
-  }
-  .description,
-  ::global(.dark) .description {
-    border-width: 1px 0;
-  }
-  h2 a {
-    color: #000;
+  article .description {
+    color: var(--fg-muted);
+    margin: 0 0 1rem;
+    font-size: 0.95rem;
+    line-height: 1.55;
   }
 
-  li a {
-    font-weight: unset;
+  article .readMore {
+    display: inline-block;
+    color: var(--accent);
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: transform 0.2s ease;
   }
 
-  :global(.dark) h2 a {
-    color: rgb(255 255 255 / 0.75);
+  .articleLink:hover .readMore {
+    transform: translateX(3px);
   }
 
-  .details {
-    display: grid;
-    grid-template-columns: auto auto;
-  }
-
-  p {
-    color: #333;
-  }
-
-  ::global(.dark) p {
-    color: rgb(255 255 255 / 0.5);
-  }
-
-  .reading-time {
-    justify-self: end;
+  @media (max-width: 480px) {
+    article {
+      padding: 1.25rem 1.25rem;
+    }
+    article h2 {
+      font-size: 1.2rem;
+    }
   }
 </style>

@@ -1,11 +1,13 @@
 ---
 layout: ../layouts/BaseLayout.astro
 title: 'Socials'
-description: 'Links to all social sites where you can find hamza-mohd'
-keywords: 'socials, social media, media'
+description: 'Where to find Hamza Mohd online.'
+keywords: 'socials, social media, github, x, twitter, reddit'
 ---
 
 # Social Links
 
 - [GitHub](https://github.com/hamza-mohd)
-- [Twitter](https://x.com/)
+- [X / Twitter](https://x.com/MohdHamza190070)
+- [Reddit](https://www.reddit.com/user/ClassicOld2202/)
+- [RSS](/rss.xml)
