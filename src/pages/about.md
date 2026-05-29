@@ -13,5 +13,6 @@ I write here occasionally, mostly when something I learned on the job feels gene
 
 I keep a low personal footprint online by choice. The blog is the most accurate picture of how I think about the craft.
 
-- [X / Twitter](https://x.com/MohdHamza190070)
+- [X](https://x.com/mohdhamza_x)
 - [GitHub](https://github.com/hamza-mohd)
+- [Reddit](https://www.reddit.com/user/ClassicOld2202/)
