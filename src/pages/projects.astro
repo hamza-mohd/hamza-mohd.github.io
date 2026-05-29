@@ -4,6 +4,16 @@ import { Image } from 'astro:assets'
 import 'dotenv/config'
 import star from '../images/star.png'
 
+const featuredProjects = [
+  {
+    name: 'Backstage plugin for the TCS Labs internal developer platform',
+    description:
+      'Built an internal Backstage plugin to surface service ownership, deployment context, golden paths, and platform workflows in one place for engineering teams.',
+    href: '/2026/05/29/building-a-backstage-plugin-for-the-tcs-labs-idp',
+    meta: ['Backstage', 'Platform engineering', 'Internal developer platform']
+  }
+]
+
 const requestBody = `
 {
   user(login: "hamza-mohd") {
@@ -59,7 +69,7 @@ if (!process.env.GH_ACCESS_TOKEN || process.env.GH_ACCESS_TOKEN === '') {
     <span class="kicker">Building</span>
     <h1>Projects</h1>
     <p class="sub">
-      A small set of pinned projects. More on <a
+      A mix of selected platform work and pinned public repositories. More on <a
         href="https://github.com/hamza-mohd"
         target="_blank"
         rel="noreferrer noopener">my GitHub</a
@@ -67,6 +77,30 @@ if (!process.env.GH_ACCESS_TOKEN || process.env.GH_ACCESS_TOKEN === '') {
     </p>
   </header>
 
+  <section class="sectionBlock">
+    <div class="sectionLabel">Selected work</div>
+    <div class="project-list">
+      {featuredProjects.map(({ name, description, href, meta }) => (
+        <a class="cardLink" href={href}>
+          <article>
+            <header class="cardHeader">
+              <h2>{name}</h2>
+              <span class="badge">Featured</span>
+            </header>
+            <p class="description">{description}</p>
+            <ul class="languages">
+              {meta.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </article>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="sectionBlock">
+    <div class="sectionLabel">Pinned repositories</div>
   {
     projects.length === 0 ? (
       <div class="empty">
@@ -105,6 +139,7 @@ if (!process.env.GH_ACCESS_TOKEN || process.env.GH_ACCESS_TOKEN === '') {
       </div>
     )
   }
+  </section>
 </BaseLayout>
 
 <style>
@@ -143,6 +178,20 @@ if (!process.env.GH_ACCESS_TOKEN || process.env.GH_ACCESS_TOKEN === '') {
     padding: 2rem;
     text-align: center;
     color: var(--fg-subtle);
+  }
+
+  .sectionBlock + .sectionBlock {
+    margin-top: 2rem;
+  }
+
+  .sectionLabel {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fg-subtle);
+    margin-bottom: 1rem;
   }
 
   .project-list {
@@ -205,6 +254,18 @@ if (!process.env.GH_ACCESS_TOKEN || process.env.GH_ACCESS_TOKEN === '') {
     border: 1px solid var(--border);
     padding: 0.2rem 0.55rem;
     border-radius: 999px;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.75rem;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border: 1px solid var(--border);
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    white-space: nowrap;
   }
 
   .stars :global(img) {
