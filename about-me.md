@@ -1,28 +1,22 @@
-**Mohd. Hamza** *Principal Platform Engineer & Cloud-Native Architect | Tata Consultancy Services (CoE)*
+**Mohd. Hamza Shaikh**
+*Platform Engineer & Tech Lead - Tata Consulting Services Labs*
 
-**Executive Summary**
-Mohd. Hamza is a highly seasoned Platform Engineer with 15 years of experience designing, scaling, and securing enterprise-grade infrastructure. Currently a driving technical force within a Center of Excellence (CoE) at Tata Consultancy Services (TCS), Hamza specializes in building next-generation Internal Developer Platforms (IDPs). Combining a rigorous approach to system architecture with a deep passion for Developer Experience (DevEx), he bridges the gap between complex Kubernetes infrastructure and seamless developer workflows.
+I'm a Platform Engineer with six years of experience designing, scaling, and securing enterprise-grade infrastructure. I currently serve as a Tech Lead within TCS Labs - a Center of Excellence operating independently from core corporate IT governance - where my team builds a next-generation Internal Developer Platform for one of the world's largest organizations.
 
-**Career Journey: The 15-Year Arc**
-Hamza’s career began in the early 2010s during the height of the transition from physical servers to virtualization and early cloud adoption. Cutting his teeth as a backend software engineer, he quickly gravitated toward infrastructure and release engineering. As Docker and Kubernetes revolutionized the industry, Hamza evolved from a traditional DevOps practitioner into a dedicated Platform Engineer. Over the last decade and a half, he has consistently tackled the hardest problems in distributed systems, moving from untangling monolithic applications to designing self-service "paved paths" for global engineering teams.
+My career started in 2020 at Tata Consultancy Services, where I graduated into a two-year consulting placement focused on monolithic Java applications. That work was grounding, but the real turning point came in my third year when I joined the Meshery project through an LFX internship. That experience cracked open the cloud-native world for me. I got comfortable with CNCF technologies, the open source way of working, and - perhaps most importantly - a completely different philosophy about what infrastructure should do for developers.
 
-**Current Focus: The Enterprise IDP at TCS**
-Within the TCS Center of Excellence, Hamza’s mandate is massive: architecting an Internal Developer Platform intended for broad use across an organization with hundreds of thousands of employees and clients.
+Following the internship, I was invited to join a small, newly formed team backed by two TCS senior leaders as executive sponsors. That team became TCS Labs, and the platform we're building sits on a CNCF-native stack with Meshery at the center. Meshery's ability to serve as a service provider-grade, multi-tenant, and highly customizable platform - with collaboration built in and integrations across AWS, GCP, Azure, and the broader CNCF ecosystem - made it the right foundation. It didn't just shape my early career; it permanently changed the trajectory of it.
 
-Because TCS operates at an unprecedented scale, Hamza’s IDP goes far beyond a simple service catalog. He focuses heavily on **service provider-grade architecture**, ensuring the platform can handle:
+Today, my mandate at TCS Labs is to architect and lead one component of an IDP designed to serve an organization with hundreds of thousands of employees and clients. The hardest problems I work on live at the intersection of scale, isolation, and usability:
 
-* **Complex Organizational Hierarchies:** Mapping deep, multi-tiered corporate structures directly into the platform's logical boundaries.
-* **Strict Multi-Tenancy:** Ensuring complete compute, network, and data isolation between different business units and client projects.
-* **Advanced Permissions & RBAC:** Implementing fine-grained, policy-as-code access controls that satisfy rigorous enterprise compliance and security audits without slowing down developers.
+- **Complex organizational hierarchies** - mapping deep, multi-tiered corporate structures into clean platform boundaries
+- **Strict multi-tenancy** - enforcing complete compute, network, and data isolation between business units and client projects
+- **Fine-grained RBAC** - implementing policy-as-code access controls that satisfy enterprise compliance without creating friction for developers
 
-**Open Source Leadership & Accolades**
-Hamza’s expertise is not confined to proprietary enterprise code. He is a prominent and highly active figure in the cloud-native open-source community, particularly within the CNCF ecosystem.
+Outside of TCS Labs, I'm an active contributor to Meshery and the Meshery Operator, working primarily in Go and TypeScript. My open source contributions have earned me GitHub's "Pull Shark" and "Pair Extraordinaire" badges - but what I'm more proud of is the collaborative culture those reflect.
 
-* **Meshery & Kubernetes:** He is a key contributor to **Meshery** (the cloud-native manager) and the **Meshery Operator**, heavily utilizing Go and TypeScript to build tools that manage the lifecycle of Kubernetes components. His work on `helm-kanvas-snapshot` highlights his deep capability in visual infrastructure management and Helm-based deployments.
-* **GitHub Recognition:** His open-source dedication has earned him notable GitHub accolades, including multiple "Pull Shark" and "Pair Extraordinaire" badges, reflecting a highly collaborative and prolific coding style.
-* **Champion of DevEx:** Unlike many infrastructure engineers who focus solely on the backend, Hamza has a strong affinity for UI and design. His curation of `awesome-design-systems` and custom `vscode-icons` highlights a core philosophy: internal tools and developer platforms must be as beautiful and intuitive as consumer-facing products.
+One thing that sets me apart from most infrastructure engineers: I genuinely care about design. I maintain projects like `awesome-design-systems` and custom `vscode-icons` because I believe internal developer tools deserve the same craft and intention as consumer products. A platform that's hard to use is a platform that doesn't get used.
 
-**Personal Interests & Philosophy**
-Describing himself as *"Happy go lucky in open source,"* Hamza brings a refreshing, approachable energy to the often rigid world of enterprise security and tenancy architecture.
+I describe my relationship with open source as "happy go lucky" - and I mean it. I mentor junior engineers making the shift from traditional IT to platform engineering, and I spend my downtime at the intersection of design and code: custom developer workflows, aesthetic terminal environments, unified design systems for internal tooling.
 
-Outside of architecting multi-tenant Kubernetes clusters, he is passionate about mentoring junior engineers on the shift from traditional IT to platform engineering. He spends his downtime exploring the intersection of design and code—tinkering with custom developer workflows, optimizing aesthetic terminal environments, and advocating for unified design systems within internal tooling. Whether he is writing custom Go controllers or debating the nuances of RBAC models, Hamza operates on a simple principle: infrastructure should empower developers, not block them.
+Infrastructure should empower developers. That's the principle I build everything around.
