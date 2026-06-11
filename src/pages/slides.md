@@ -1,8 +1,8 @@
 <!-- ---
 layout: ../layouts/BaseLayout.astro
 title: 'Slides'
-description: 'Presentation content from past talks by clarkio'
-keywords: 'clarkio, slides, presentations, talks, content'
+description: 'Presentation content from past talks by hamza-mohd'
+keywords: 'hamza-mohd, slides, presentations, talks, content'
 ---
 
 # Slides

@@ -1,8 +1,8 @@
 <!-- ---
 layout: ../layouts/BaseLayout.astro
 title: 'Talks'
-description: 'Conferences, code camps and community group events at which clarkio talked and/or presented something.'
-keywords: 'clarkio, talks, presentations, conferences'
+description: 'Conferences, code camps and community group events at which hamza-mohd talked and/or presented something.'
+keywords: 'hamza-mohd, talks, presentations, conferences'
 ---
 
 # A Record of Talks

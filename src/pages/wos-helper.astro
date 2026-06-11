@@ -5,9 +5,9 @@ import Twitch from '../components/Icons/Twitch.astro'
 ---
 
 <WosBaseLayout
-  title="Clarkio's Words on Stream Tool"
-  description="Clarkio's Words on Stream Tool"
-  keywords="clarkio, words on stream, wos, twitch, streaming, helper, wordsonstream, tool"
+  title="hamza-mohd's Words on Stream Tool"
+  description="hamza-mohd's Words on Stream Tool"
+  keywords="hamza-mohd, words on stream, wos, twitch, streaming, helper, wordsonstream, tool"
 >
   <div id="logo-container-id" class="logo-container">
     <a href="/">
@@ -16,7 +16,7 @@ import Twitch from '../components/Icons/Twitch.astro'
       </div>
     </a>
 
-    <h2>Clarkio's Words on Stream Tool</h2>
+    <h2>hamza-mohd's Words on Stream Tool</h2>
   </div>
   <details id="wos-helper-controls">
     <summary>Show/Hide Controls</summary>
@@ -69,7 +69,7 @@ import Twitch from '../components/Icons/Twitch.astro'
             <span id="letters-label">Letters:</span>
             <span id="letters"></span>
           </div>
-          <span>Made by: <Twitch height={10} width={10} /> clarkio</span>
+          <span>Made by: <Twitch height={10} width={10} /> hamza-mohd</span>
           <div id="correct-words-log-container">
             <span>Correct Words: (* words missed)</span>
             <div id="correct-words-log" class="logs"></div>
@@ -165,7 +165,7 @@ import Twitch from '../components/Icons/Twitch.astro'
     }
 
     if (urlParams.has('twitchChannel')) {
-      const twitchChannel = urlParams.get('twitchChannel') || 'clarkio'
+      const twitchChannel = urlParams.get('twitchChannel') || 'hamza-mohd'
       const twitchChannelInput = document.getElementById(
         'twitchChannel'
       ) as HTMLInputElement

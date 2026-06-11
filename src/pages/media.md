@@ -1,8 +1,8 @@
 ---
 layout: ../layouts/BaseLayout.astro
 title: 'Media'
-description: "Videos, podcasts and other media in which clarkio has either created or had some involvement in."
-keywords: 'clarkio, media, videos, podcasts, livestreams, articles, blogs, courses'
+description: "Videos, podcasts and other media in which hamza-mohd has either created or had some involvement in."
+keywords: 'hamza-mohd, media, videos, podcasts, livestreams, articles, blogs, courses'
 ---
 
 # Media
@@ -11,8 +11,8 @@ Here you can find some of the content I've either created or have been a part of
 
 ### Live Streams
 
-- [Twitch Channel](https://twitch.tv/clarkio): Regular live coding sessions covering various projects dealing mostly with JavaScript, TypeScript and Node.js.
-- [Past Streams](https://twitch.tv/clarkio/videos): If you missed a stream you can catch the recordings that are saved on Twitch
+- [Twitch Channel](https://twitch.tv/hamza-mohd): Regular live coding sessions covering various projects dealing mostly with JavaScript, TypeScript and Node.js.
+- [Past Streams](https://twitch.tv/hamza-mohd/videos): If you missed a stream you can catch the recordings that are saved on Twitch
 - [PyWeekly Live](https://www.youtube.com/playlist?list=PLlrxD0HtieHhMG0KVlaG9LlFpSOmJcCLa): A show I co-hosted with Cecil Phillip where we both learn Python as beginners and build with it.
 - [All Around Azure](https://blog.allaroundazure.com/): I was a guest on the show sharing VS Code extensions that help when working with Azure
   - [Part 1](https://www.youtube.com/watch?v=CTwjrxwWoLQ)

@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://clarkio.com/',
+  site: 'https://hamza-mohd.github.io',
   integrations: [sitemap()],
   image: {
     domains: ['cdn.simpleicons.org', 'youtube.com'],

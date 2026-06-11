@@ -3,7 +3,7 @@ let wosDictionary: string[]; // = localDictionary as string[];
 
 export async function updateWosDictionary(word: string) {
   try {
-    const url = 'https://clarkio.com/wos-dictionary';
+    const url = 'https://hamza-mohd.github.iowos-dictionary';
     const response = await fetch(url, {
       method: 'PATCH',
       headers: {
@@ -28,7 +28,7 @@ export async function updateWosDictionary(word: string) {
 export async function loadWosDictionary() {
   try {
     // Use a CORS proxy for local development
-    const url = 'https://clarkio.com/wos-dictionary';
+    const url = 'https://hamza-mohd.github.iowos-dictionary';
 
     const response = await fetch(url);
 

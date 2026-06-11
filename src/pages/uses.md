@@ -1,7 +1,7 @@
 ---
 layout: ../layouts/BaseLayout.astro
 title: Uses
-description: All the tech, equipement and software clarkio uses
+description: All the tech, equipement and software hamza-mohd uses
 ---
 
 # Uses
