@@ -5,7 +5,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro'
 import Paginator from '../../components/Paginator.astro'
 
 export async function getStaticPaths({ paginate, rss }) {
-  const allPosts = await Astro.glob('./**/*.md')
+  const allPosts = Object.values(import.meta.glob('./**/*.md', { eager: true }))
   const sortedPosts = allPosts.sort(
     (a, b) =>
       new Date(b.frontmatter.publishDate).valueOf() -

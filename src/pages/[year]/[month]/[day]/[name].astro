@@ -1,6 +1,8 @@
 ---
 export async function getStaticPaths() {
-  let allLegacyPosts = await Astro.glob('../../../blog/old-posts/*.md')
+  const allLegacyPosts = Object.values(
+    import.meta.glob('../../../blog/old-posts/*.md', { eager: true })
+  )
   const result = allLegacyPosts.map((postContent) => {
     const url = postContent.url.replace('/blog/old-posts/', '')
     const year = url.slice(0, 4)
