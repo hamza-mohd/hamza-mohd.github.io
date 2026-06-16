@@ -14,6 +14,12 @@ permissions:
   pages: write
   id-token: write
 
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -21,7 +27,7 @@ jobs:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
       - name: Install, build, and upload your site output
-        uses: withastro/action@v4
+        uses: withastro/action@v6
         # with:
             # path: . # The root location of your Astro project inside the repository. (optional)
             # node-version: 22 # The specific version of Node that should be used to build your site. Defaults to 22. (optional)
